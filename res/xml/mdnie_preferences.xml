@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/app_name" >
+
+    <PreferenceCategory
+        android:key="mdnie"
+        android:title="@string/screen_colors_title" >
+
+        <!-- CABC -->
+        <com.android.settings.focus.CABC
+            android:defaultValue="true"
+            android:key="cabc"
+            android:summary="@string/cabc_summary_head"
+            android:title="@string/cabc_title_head" />
+
+        <!-- mDNIe Scenario modes -->
+        <com.android.settings.focus.mDNIeScenario
+            android:defaultValue="0"
+            android:entries="@array/mdnie_scenario_entries"
+            android:entryValues="@array/mdnie_scenario_entries_values"
+            android:key="mdnie_scenario"
+            android:summary="@string/mdnie_scenario_summary_head"
+            android:title="@string/mdnie_scenario_title_head" />
+
+        <!-- mDNIe Mode -->
+        <com.android.settings.focus.mDNIeMode
+            android:defaultValue="1"
+            android:entries="@array/mdnie_mode_entries"
+            android:entryValues="@array/mdnie_mode_entries_values"
+            android:key="mdnie_mode"
+            android:summary="@string/mdnie_mode_summary_head"
+            android:title="@string/mdnie_mode_title_head" />
+
+        <!-- mDNIe Outdoor mode -->
+        <com.android.settings.focus.mDNIeOutdoor
+            android:defaultValue="false"
+            android:key="mdnie_outdoor_mode"
+            android:summary="@string/mdnie_outdoor_summary_head"
+            android:title="@string/mdnie_outdoor_title_head" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="touchscreen"
+        android:title="@string/touchscreen_subcat_title" >
+        <com.android.settings.focus.TouchscreenSensitivity
+            android:defaultValue="50"
+            android:entries="@array/touchscreen_sensitivity_entries"
+            android:entryValues="@array/touchscreen_sensitivity_entries_values"
+            android:key="touchscreen_sensitivity"
+            android:summary="@string/touchscreen_sensitivity_summary_head"
+            android:title="@string/touchscreen_sensitivity_title_head" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
