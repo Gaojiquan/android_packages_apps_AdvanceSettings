@@ -468,15 +468,6 @@ public class HardwareKeys extends PreferenceFragment implements
 
 		Settings.System.putString(context.getContentResolver(), key, action);
 
-		String formatString = Settings.System.getString(
-				context.getContentResolver(), key);
-		String[] paramArr = formatString.split(";");
-		if (paramArr.length < 2)
-			return;
-		Intent intent = new Intent(Intent.ACTION_MAIN);
-		intent.setClassName(paramArr[0], paramArr[1]);
-		context.startActivity(intent);
-
 	}
 
 	public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
