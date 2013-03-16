@@ -150,7 +150,17 @@ public class HardwareKeys extends PreferenceFragment implements
 			}
 			mHomeLongPressAction
 					.setValue(Integer.toString(homeLongPressAction));
-			mHomeLongPressAction.setSummary(mHomeLongPressAction.getEntry());
+
+			if (homeLongPressAction == ACTION_CUSTOM_APP) {
+
+				String label = getInfo("key_home_long_press_custom_action");
+				mHomeLongPressAction.setSummary(label);
+			} else {
+
+				mHomeLongPressAction
+						.setSummary(mHomeLongPressAction.getEntry());
+			}
+
 			mHomeLongPressAction.setOnPreferenceChangeListener(this);
 		} else {
 			bindingsCategory.removePreference(mHomeLongPressAction);
@@ -175,7 +185,17 @@ public class HardwareKeys extends PreferenceFragment implements
 			}
 			mMenuLongPressAction
 					.setValue(Integer.toString(menuLongPressAction));
-			mMenuLongPressAction.setSummary(mMenuLongPressAction.getEntry());
+
+			if (menuLongPressAction == ACTION_CUSTOM_APP) {
+
+				String label = getInfo("key_menu_long_press_custom_action");
+				mMenuLongPressAction.setSummary(label);
+			} else {
+
+				mMenuLongPressAction
+						.setSummary(mMenuLongPressAction.getEntry());
+			}
+
 			mMenuLongPressAction.setOnPreferenceChangeListener(this);
 		} else {
 			bindingsCategory.removePreference(mMenuPressAction);
@@ -194,8 +214,17 @@ public class HardwareKeys extends PreferenceFragment implements
 					ACTION_VOICE_SEARCH);
 			mAssistLongPressAction.setValue(Integer
 					.toString(assistLongPressAction));
-			mAssistLongPressAction
-					.setSummary(mAssistLongPressAction.getEntry());
+
+			if (assistLongPressAction == ACTION_CUSTOM_APP) {
+
+				String label = getInfo("key_assist_long_press_custom_action");
+				mAssistLongPressAction.setSummary(label);
+			} else {
+
+				mAssistLongPressAction.setSummary(mAssistLongPressAction
+						.getEntry());
+			}
+
 			mAssistLongPressAction.setOnPreferenceChangeListener(this);
 		} else {
 			bindingsCategory.removePreference(mAssistPressAction);
@@ -216,8 +245,17 @@ public class HardwareKeys extends PreferenceFragment implements
 					ACTION_NOTHING);
 			mAppSwitchLongPressAction.setValue(Integer
 					.toString(appSwitchLongPressAction));
-			mAppSwitchLongPressAction.setSummary(mAppSwitchLongPressAction
-					.getEntry());
+
+			if (appSwitchLongPressAction == ACTION_CUSTOM_APP) {
+
+				String label = getInfo("key_app_switch_long_press_custom_action");
+				mAppSwitchLongPressAction.setSummary(label);
+			} else {
+
+				mAppSwitchLongPressAction.setSummary(mAppSwitchLongPressAction
+						.getEntry());
+			}
+
 			mAppSwitchLongPressAction.setOnPreferenceChangeListener(this);
 		} else {
 			bindingsCategory.removePreference(mAppSwitchPressAction);
@@ -372,8 +410,7 @@ public class HardwareKeys extends PreferenceFragment implements
 
 							mHomeLongPressAction.setSummary(info
 									.loadLabel(context.getPackageManager()));
-							setInfo(info, context,
-									"key_home_long_press_custom_action");
+							setInfo(info, "key_home_long_press_custom_action");
 
 							Settings.System.putInt(
 									context.getContentResolver(),
@@ -384,8 +421,7 @@ public class HardwareKeys extends PreferenceFragment implements
 
 							mMenuPressAction.setSummary(info.loadLabel(context
 									.getPackageManager()));
-							setInfo(info, context,
-									"key_menu_press_custom_action");
+							setInfo(info, "key_menu_press_custom_action");
 
 							Settings.System.putInt(
 									context.getContentResolver(),
@@ -395,8 +431,7 @@ public class HardwareKeys extends PreferenceFragment implements
 
 							mMenuLongPressAction.setSummary(info
 									.loadLabel(context.getPackageManager()));
-							setInfo(info, context,
-									"key_menu_long_press_custom_action");
+							setInfo(info, "key_menu_long_press_custom_action");
 
 							Settings.System.putInt(
 									context.getContentResolver(),
@@ -407,8 +442,7 @@ public class HardwareKeys extends PreferenceFragment implements
 
 							mAssistPressAction.setSummary(info
 									.loadLabel(context.getPackageManager()));
-							setInfo(info, context,
-									"key_assist_press_custom_action");
+							setInfo(info, "key_assist_press_custom_action");
 
 							Settings.System.putInt(
 									context.getContentResolver(),
@@ -419,8 +453,7 @@ public class HardwareKeys extends PreferenceFragment implements
 
 							mAssistLongPressAction.setSummary(info
 									.loadLabel(context.getPackageManager()));
-							setInfo(info, context,
-									"key_assist_long_press_custom_action");
+							setInfo(info, "key_assist_long_press_custom_action");
 
 							Settings.System.putInt(
 									context.getContentResolver(),
@@ -431,8 +464,7 @@ public class HardwareKeys extends PreferenceFragment implements
 
 							mAppSwitchPressAction.setSummary(info
 									.loadLabel(context.getPackageManager()));
-							setInfo(info, context,
-									"key_app_switch_press_custom_action");
+							setInfo(info, "key_app_switch_press_custom_action");
 
 							Settings.System.putInt(
 									context.getContentResolver(),
@@ -443,7 +475,7 @@ public class HardwareKeys extends PreferenceFragment implements
 
 							mAppSwitchLongPressAction.setSummary(info
 									.loadLabel(context.getPackageManager()));
-							setInfo(info, context,
+							setInfo(info,
 									"key_app_switch_long_press_custom_action");
 
 							Settings.System.putInt(
@@ -461,13 +493,43 @@ public class HardwareKeys extends PreferenceFragment implements
 
 	}
 
-	private void setInfo(ResolveInfo info, Context context, String key) {
+	private void setInfo(ResolveInfo info, String key) {
 		String action = String.format("%s;%s",
 				info.activityInfo.applicationInfo.packageName,
 				info.activityInfo.name);
 
-		Settings.System.putString(context.getContentResolver(), key, action);
+		Settings.System.putString(getActivity().getContentResolver(), key,
+				action);
 
+	}
+
+	private String getInfo(String key) {
+		String result = "";
+
+		String formatString = Settings.System.getString(getActivity()
+				.getContentResolver(), key);
+		String[] paramArr = formatString.split(";");
+		if (paramArr.length >= 2) {
+			Intent intent = new Intent(Intent.ACTION_MAIN);
+			intent.setClassName(paramArr[0], paramArr[1]);
+			final ResolveInfo resolveInfo = getActivity().getPackageManager()
+					.resolveActivity(intent, 0);
+
+			CharSequence label = "";
+			if (resolveInfo != null) {
+				label = resolveInfo
+						.loadLabel(getActivity().getPackageManager());
+			} else {
+				label = getActivity().getText(R.string.custom_app_not_found);
+			}
+
+			result = String.format(
+					"%s: %s",
+					getActivity().getText(
+							R.string.hardware_keys_action_custom_app), label);
+		}
+
+		return result;
 	}
 
 	public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,

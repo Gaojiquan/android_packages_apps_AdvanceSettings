@@ -153,5 +153,6 @@
     <string name="hardware_keys_action_custom_app">Choose a app</string>
     <string name="additional_options_title">Additional options</string>
     <string name="pick_up_app">Pickup App</string>
+    <string name="custom_app_not_found">Custom app not found, Please select a new one</string>
 
 </resources>
