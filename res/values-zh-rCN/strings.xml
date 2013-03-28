@@ -157,5 +157,6 @@
     <string name="additional_options_title">其他选项</string>
     <string name="pick_up_app">请选择程序</string>
     <string name="custom_app_not_found">程序已失效，请重新选择</string>
-
+    <string name="pref_home_answer_incall_title">来电选项</string>
+    <string name="pref_home_answer_incall_summary">按下HOME键接听来电</string>
 </resources>

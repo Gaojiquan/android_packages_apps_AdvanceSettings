@@ -96,10 +96,12 @@ public class HardwareKeys extends PreferenceFragment implements
 
 	private CheckBoxPreference mVolumeWake;
 	private CheckBoxPreference mBackbuttonKillApp;
+	private CheckBoxPreference mHomeKeyAnswerIncall;
 
 	private static final String KEY_VOLUME_WAKE = "pref_volume_wake";
 
 	private static final String KEY_BACKBUTTON_KILL_APP = "pref_backbutton_kill";
+	private static final String KEY_HOME_ANSWER_CALL = "pref_home_answer_incall";
 
 	private List<ResolveInfo> mApps = null;
 
@@ -279,6 +281,15 @@ public class HardwareKeys extends PreferenceFragment implements
 		if (mBackbuttonKillApp != null) {
 			mBackbuttonKillApp.setChecked(Settings.System.getInt(getActivity()
 					.getContentResolver(), "kill_app_longpress_back", 0) == 1);
+		}
+
+		mHomeKeyAnswerIncall = (CheckBoxPreference) findPreference(KEY_HOME_ANSWER_CALL);
+		if (mHomeKeyAnswerIncall != null) {
+
+			final int incallHomeBehavior = Settings.System.getInt(getActivity()
+					.getContentResolver(), "ring_home_button_behavior", 1);
+			final boolean homeButtonAnswersCall = (incallHomeBehavior == 2);
+			mHomeKeyAnswerIncall.setChecked(homeButtonAnswersCall);
 		}
 	}
 
@@ -563,6 +574,11 @@ public class HardwareKeys extends PreferenceFragment implements
 					"kill_app_longpress_back",
 					mBackbuttonKillApp.isChecked() ? 1 : 0);
 			return true;
+		} else if (preference == mHomeKeyAnswerIncall) {
+
+			Settings.System.putInt(getActivity().getContentResolver(),
+					"ring_home_button_behavior",
+					(mHomeKeyAnswerIncall.isChecked() ? 2 : 1));
 		}
 		return false;
 	}
