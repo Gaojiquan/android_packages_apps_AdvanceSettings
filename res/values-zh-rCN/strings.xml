@@ -159,4 +159,8 @@
     <string name="custom_app_not_found">程序已失效，请重新选择</string>
     <string name="pref_home_answer_incall_title">来电选项</string>
     <string name="pref_home_answer_incall_summary">按下HOME键接听来电</string>
+    <string name="title_button_modes">按钮模式</string>
+    <string name="pref_flash_mode_title">闪烁频率</string>
+    <string name="power_widget_behavior">控件行为</string>
+
 </resources>

@@ -20,93 +20,97 @@ import com.focus.advsettings.R;
 
 import android.content.Context;
 import android.provider.Settings;
+import android.telephony.TelephonyManager;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
 /**
  * THIS CLASS'S DATA MUST BE KEPT UP-TO-DATE WITH THE DATA IN
- * com.android.systemui.statusbar.powerwidget.PowerWidget AND
- * com.android.systemui.statusbar.powerwidget.PowerButton IN THE SystemUI
+ * com.focus.SharedSystemUI.statusbar.powerwidget.PowerWidget AND
+ * com.focus.SharedSystemUI.statusbar.powerwidget.PowerButton IN THE SystemUI
  * PACKAGE.
  */
 public class PowerWidgetUtil {
-	public static final String BUTTON_WIFI = "Wifi";
-	public static final String BUTTON_WIFI_DISPLAY = "WifiDisplay";
-	public static final String BUTTON_GPS = "Location";
-	public static final String BUTTON_BLUETOOTH = "Bluetooth";
-	public static final String BUTTON_SOUND = "SilentMode";
-	public static final String BUTTON_SYNC = "Sync";
-	public static final String BUTTON_MOBILEDATA = "MobileData";
-	public static final String BUTTON_AUTOROTATE = "AutoRotate";
-	public static final String BUTTON_AIRPLANE = "AirplaneMode";
-	public static final String BUTTON_FLASHLIGHT = "Flash";
-	public static final String BUTTON_SLEEP = "Sleep";
-	public static final String BUTTON_POWERSAVING = "PowerSaving";
-
-	public static final String BUTTON_DONOTDISTURB = "DoNotDisturb";
-	public static final String BUTTON_DRIVINGMODE = "DrivingMode";
+	public static final String BUTTON_WIFI = "toggleWifi";
+	public static final String BUTTON_GPS = "toggleGPS";
+	public static final String BUTTON_BLUETOOTH = "toggleBluetooth";
+	public static final String BUTTON_BRIGHTNESS = "toggleBrightness";
+	public static final String BUTTON_SOUND = "toggleSound";
+	public static final String BUTTON_SYNC = "toggleSync";
+	public static final String BUTTON_WIFIAP = "toggleWifiAp";
+	public static final String BUTTON_SCREENTIMEOUT = "toggleScreenTimeout";
+	public static final String BUTTON_MOBILEDATA = "toggleMobileData";
+	public static final String BUTTON_LOCKSCREEN = "toggleLockScreen";
+	public static final String BUTTON_NETWORKMODE = "toggleNetworkMode";
+	public static final String BUTTON_AUTOROTATE = "toggleAutoRotate";
+	public static final String BUTTON_AIRPLANE = "toggleAirplane";
+	public static final String BUTTON_FLASHLIGHT = "toggleFlashlight";
+	public static final String BUTTON_SLEEP = "toggleSleepMode";
+	public static final String BUTTON_MEDIA_PLAY_PAUSE = "toggleMediaPlayPause";
+	public static final String BUTTON_MEDIA_PREVIOUS = "toggleMediaPrevious";
+	public static final String BUTTON_MEDIA_NEXT = "toggleMediaNext";
+	public static final String BUTTON_LTE = "toggleLte";
+	public static final String BUTTON_WIMAX = "toggleWimax";
 
 	public static final HashMap<String, ButtonInfo> BUTTONS = new HashMap<String, ButtonInfo>();
 	static {
-
-		BUTTONS.put(
-				BUTTON_WIFI_DISPLAY,
-				new PowerWidgetUtil.ButtonInfo(BUTTON_WIFI_DISPLAY,
-						R.string.title_toggle_wifidisplay,
-						"com.android.systemui:drawable/tw_quick_panel_icon_wifi_display_on"));
-		BUTTONS.put(
-				BUTTON_DONOTDISTURB,
-				new PowerWidgetUtil.ButtonInfo(BUTTON_DONOTDISTURB,
-						R.string.title_toggle_donotdisturb,
-						"com.android.systemui:drawable/tw_quick_panel_icon_notification_on"));
-		BUTTONS.put(BUTTON_DRIVINGMODE, new PowerWidgetUtil.ButtonInfo(
-				BUTTON_DRIVINGMODE, R.string.title_toggle_drivingmode,
-				"com.android.systemui:drawable/tw_quick_panel_icon_driving_on"));
-
-		BUTTONS.put(
-				BUTTON_POWERSAVING,
-				new PowerWidgetUtil.ButtonInfo(BUTTON_POWERSAVING,
-						R.string.title_toggle_powersaving,
-						"com.android.systemui:drawable/tw_quick_panel_icon_powersave_on"));
-		BUTTONS.put(
-				BUTTON_AIRPLANE,
-				new PowerWidgetUtil.ButtonInfo(BUTTON_AIRPLANE,
-						R.string.title_toggle_airplane,
-						"com.android.systemui:drawable/tw_quick_panel_icon_airplane_on"));
-		BUTTONS.put(
-				BUTTON_AUTOROTATE,
-				new PowerWidgetUtil.ButtonInfo(BUTTON_AUTOROTATE,
-						R.string.title_toggle_autorotate,
-						"com.android.systemui:drawable/tw_quick_panel_icon_rotation_on"));
-		BUTTONS.put(
-				BUTTON_BLUETOOTH,
-				new PowerWidgetUtil.ButtonInfo(BUTTON_BLUETOOTH,
-						R.string.title_toggle_bluetooth,
-						"com.android.systemui:drawable/tw_quick_panel_icon_bluetooth_on"));
+		BUTTONS.put(BUTTON_AIRPLANE, new PowerWidgetUtil.ButtonInfo(
+				BUTTON_AIRPLANE, R.string.title_toggle_airplane,
+				"com.focus.SharedSystemUI:drawable/stat_airplane_on"));
+		BUTTONS.put(BUTTON_AUTOROTATE, new PowerWidgetUtil.ButtonInfo(
+				BUTTON_AUTOROTATE, R.string.title_toggle_autorotate,
+				"com.focus.SharedSystemUI:drawable/stat_orientation_on"));
+		BUTTONS.put(BUTTON_BLUETOOTH, new PowerWidgetUtil.ButtonInfo(
+				BUTTON_BLUETOOTH, R.string.title_toggle_bluetooth,
+				"com.focus.SharedSystemUI:drawable/stat_bluetooth_on"));
+		BUTTONS.put(BUTTON_BRIGHTNESS, new PowerWidgetUtil.ButtonInfo(
+				BUTTON_BRIGHTNESS, R.string.title_toggle_brightness,
+				"com.focus.SharedSystemUI:drawable/stat_brightness_on"));
 		BUTTONS.put(BUTTON_FLASHLIGHT, new PowerWidgetUtil.ButtonInfo(
 				BUTTON_FLASHLIGHT, R.string.title_toggle_flashlight,
-				"com.android.systemui:drawable/stat_flashlight_on"));
+				"com.focus.SharedSystemUI:drawable/stat_flashlight_on"));
 		BUTTONS.put(BUTTON_GPS, new PowerWidgetUtil.ButtonInfo(BUTTON_GPS,
 				R.string.title_toggle_gps,
-				"com.android.systemui:drawable/tw_quick_panel_icon_gps_on"));
-		BUTTONS.put(
-				BUTTON_MOBILEDATA,
-				new PowerWidgetUtil.ButtonInfo(BUTTON_MOBILEDATA,
-						R.string.title_toggle_mobiledata,
-						"com.android.systemui:drawable/tw_quick_panel_icon_data_connection_on"));
+				"com.focus.SharedSystemUI:drawable/stat_gps_on"));
+		BUTTONS.put(BUTTON_LOCKSCREEN, new PowerWidgetUtil.ButtonInfo(
+				BUTTON_LOCKSCREEN, R.string.title_toggle_lockscreen,
+				"com.focus.SharedSystemUI:drawable/stat_lock_screen_on"));
+		BUTTONS.put(BUTTON_MOBILEDATA, new PowerWidgetUtil.ButtonInfo(
+				BUTTON_MOBILEDATA, R.string.title_toggle_mobiledata,
+				"com.focus.SharedSystemUI:drawable/stat_data_on"));
+		BUTTONS.put(BUTTON_NETWORKMODE, new PowerWidgetUtil.ButtonInfo(
+				BUTTON_NETWORKMODE, R.string.title_toggle_networkmode,
+				"com.focus.SharedSystemUI:drawable/stat_2g3g_on"));
+		BUTTONS.put(BUTTON_SCREENTIMEOUT, new PowerWidgetUtil.ButtonInfo(
+				BUTTON_SCREENTIMEOUT, R.string.title_toggle_screentimeout,
+				"com.focus.SharedSystemUI:drawable/stat_screen_timeout_on"));
 		BUTTONS.put(BUTTON_SLEEP, new PowerWidgetUtil.ButtonInfo(BUTTON_SLEEP,
 				R.string.title_toggle_sleep,
-				"com.android.systemui:drawable/tw_quick_panel_icon_sleep"));
+				"com.focus.SharedSystemUI:drawable/stat_sleep"));
 		BUTTONS.put(BUTTON_SOUND, new PowerWidgetUtil.ButtonInfo(BUTTON_SOUND,
 				R.string.title_toggle_sound,
-				"com.android.systemui:drawable/tw_quick_panel_icon_silent_on"));
+				"com.focus.SharedSystemUI:drawable/stat_ring_on"));
 		BUTTONS.put(BUTTON_SYNC, new PowerWidgetUtil.ButtonInfo(BUTTON_SYNC,
 				R.string.title_toggle_sync,
-				"com.android.systemui:drawable/tw_quick_panel_icon_sync_on"));
+				"com.focus.SharedSystemUI:drawable/stat_sync_on"));
 		BUTTONS.put(BUTTON_WIFI, new PowerWidgetUtil.ButtonInfo(BUTTON_WIFI,
 				R.string.title_toggle_wifi,
-				"com.android.systemui:drawable/tw_quick_panel_icon_wifi_on"));
+				"com.focus.SharedSystemUI:drawable/stat_wifi_on"));
+		BUTTONS.put(BUTTON_WIFIAP, new PowerWidgetUtil.ButtonInfo(
+				BUTTON_WIFIAP, R.string.title_toggle_wifiap,
+				"com.focus.SharedSystemUI:drawable/stat_wifi_ap_on"));
+		BUTTONS.put(BUTTON_MEDIA_PREVIOUS, new PowerWidgetUtil.ButtonInfo(
+				BUTTON_MEDIA_PREVIOUS, R.string.title_toggle_media_previous,
+				"com.focus.SharedSystemUI:drawable/stat_media_previous"));
+		BUTTONS.put(BUTTON_MEDIA_PLAY_PAUSE, new PowerWidgetUtil.ButtonInfo(
+				BUTTON_MEDIA_PLAY_PAUSE,
+				R.string.title_toggle_media_play_pause,
+				"com.focus.SharedSystemUI:drawable/stat_media_play"));
+		BUTTONS.put(BUTTON_MEDIA_NEXT, new PowerWidgetUtil.ButtonInfo(
+				BUTTON_MEDIA_NEXT, R.string.title_toggle_media_next,
+				"com.focus.SharedSystemUI:drawable/stat_media_next"));
 	}
 
 	private static final String BUTTON_DELIMITER = "|";

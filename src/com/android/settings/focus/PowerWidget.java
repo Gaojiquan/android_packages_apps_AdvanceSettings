@@ -17,6 +17,7 @@
 package com.android.settings.focus;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import android.annotation.SuppressLint;
@@ -27,6 +28,8 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
+import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.SwitchPreference;
@@ -48,15 +51,17 @@ import android.widget.Toast;
 
 import com.focus.advsettings.R;
 
-@SuppressLint("NewApi")
 public class PowerWidget extends PreferenceActivity implements
 		Preference.OnPreferenceChangeListener {
+	private static final String TAG = "PowerWidget";
 	private static final String SEPARATOR = "OV=I=XseparatorX=I=VO";
 	private static final String UI_EXP_WIDGET = "expanded_widget";
-	private static final String UI_EXP_WIDGET_BRIGHTNESS = "expanded_widget_brightness";
+	private static final String UI_EXP_WIDGET_HIDE_ONCHANGE = "expanded_hide_onchange";
+	private static final String UI_EXP_WIDGET_HIDE_SCROLLBAR = "expanded_hide_scrollbar";
 
 	private CheckBoxPreference mPowerWidget;
-	private CheckBoxPreference mBrightnessWidget;
+	private CheckBoxPreference mPowerWidgetHideOnChange;
+	private CheckBoxPreference mPowerWidgetHideScrollBar;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -69,25 +74,18 @@ public class PowerWidget extends PreferenceActivity implements
 
 			mPowerWidget = (CheckBoxPreference) prefSet
 					.findPreference(UI_EXP_WIDGET);
+			mPowerWidgetHideOnChange = (CheckBoxPreference) prefSet
+					.findPreference(UI_EXP_WIDGET_HIDE_ONCHANGE);
+			mPowerWidgetHideScrollBar = (CheckBoxPreference) prefSet
+					.findPreference(UI_EXP_WIDGET_HIDE_SCROLLBAR);
 
 			mPowerWidget.setChecked((Settings.System.getInt(
-					getContentResolver(),
-					mGeneralFragmentActivity.EXPANDED_VIEW_WIDGET, 1) == 1));
-/*
-			mBrightnessWidget = (CheckBoxPreference) prefSet
-					.findPreference(UI_EXP_WIDGET_BRIGHTNESS);
-
-			mBrightnessWidget
-					.setChecked((Settings.System
-							.getInt(getContentResolver(),
-									mGeneralFragmentActivity.EXPANDED_VIEW_WIDGET_BRIGHTNESS,
-									1) == 1));
-//*/
+					getContentResolver(), "expanded_view_widget", 1) == 1));
+			mPowerWidgetHideOnChange.setChecked((Settings.System.getInt(
+					getContentResolver(), "expanded_hide_onchange", 0) == 1));
+			mPowerWidgetHideScrollBar.setChecked((Settings.System.getInt(
+					getContentResolver(), "expanded_hide_scrollbar", 0) == 1));
 		}
-	}
-
-	public boolean onPreferenceChange(Preference preference, Object newValue) {
-		return false;
 	}
 
 	public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
@@ -97,13 +95,15 @@ public class PowerWidget extends PreferenceActivity implements
 		if (preference == mPowerWidget) {
 			value = mPowerWidget.isChecked();
 			Settings.System.putInt(getContentResolver(),
-					mGeneralFragmentActivity.EXPANDED_VIEW_WIDGET, value ? 1
-							: 0);
-		} else if (preference == mBrightnessWidget) {
-			value = mBrightnessWidget.isChecked();
+					"expanded_view_widget", value ? 1 : 0);
+		} else if (preference == mPowerWidgetHideOnChange) {
+			value = mPowerWidgetHideOnChange.isChecked();
 			Settings.System.putInt(getContentResolver(),
-					mGeneralFragmentActivity.EXPANDED_VIEW_WIDGET_BRIGHTNESS,
-					value ? 1 : 0);
+					"expanded_hide_onchange", value ? 1 : 0);
+		} else if (preference == mPowerWidgetHideScrollBar) {
+			value = mPowerWidgetHideScrollBar.isChecked();
+			Settings.System.putInt(getContentResolver(),
+					"expanded_hide_scrollbar", value ? 1 : 0);
 		} else {
 			startPreferencePanel(preference.getFragment(), null,
 					preference.getTitleRes(), preference.getTitle(), null, 0);
@@ -118,10 +118,21 @@ public class PowerWidget extends PreferenceActivity implements
 		public PowerWidgetChooser() {
 		}
 
+		private static final String TAG = "PowerWidgetActivity";
+
 		private static final String BUTTONS_CATEGORY = "pref_buttons";
+		private static final String BUTTON_MODES_CATEGORY = "pref_buttons_modes";
 		private static final String SELECT_BUTTON_KEY_PREFIX = "pref_button_";
 
-		private HashMap<SwitchPreference, String> mCheckBoxPrefs = new HashMap<SwitchPreference, String>();
+		private static final String EXP_BRIGHTNESS_MODE = "pref_brightness_mode";
+		private static final String EXP_NETWORK_MODE = "pref_network_mode";
+		private static final String EXP_SCREENTIMEOUT_MODE = "pref_screentimeout_mode";
+		private static final String EXP_RING_MODE = "pref_ring_mode";
+		private static final String EXP_FLASH_MODE = "pref_flash_mode";
+
+		private HashMap<CheckBoxPreference, String> mCheckBoxPrefs = new HashMap<CheckBoxPreference, String>();
+
+		ListPreference mFlashMode;
 
 		@Override
 		public void onCreate(Bundle savedInstanceState) {
@@ -131,7 +142,6 @@ public class PowerWidget extends PreferenceActivity implements
 		@Override
 		public void onActivityCreated(Bundle savedInstanceState) {
 			super.onActivityCreated(savedInstanceState);
-
 			addPreferencesFromResource(R.xml.power_widget);
 
 			PreferenceScreen prefSet = getPreferenceScreen();
@@ -139,9 +149,24 @@ public class PowerWidget extends PreferenceActivity implements
 			if (getActivity().getApplicationContext() == null) {
 				return;
 			}
+
+			mFlashMode = (ListPreference) prefSet
+					.findPreference(EXP_FLASH_MODE);
+			mFlashMode.setOnPreferenceChangeListener(this);
+
+			// TODO: set the default values of the items
+
+			// Update the summary text
+			mFlashMode.setSummary(mFlashMode.getEntry());
+
 			// Add the available buttons to the list
 			PreferenceCategory prefButtons = (PreferenceCategory) prefSet
 					.findPreference(BUTTONS_CATEGORY);
+
+			// Add the available mode buttons, incase they need to be removed
+			// later
+			PreferenceCategory prefButtonsModes = (PreferenceCategory) prefSet
+					.findPreference(BUTTON_MODES_CATEGORY);
 
 			// empty our preference category and set it to order as added
 			prefButtons.removeAll();
@@ -156,18 +181,22 @@ public class PowerWidget extends PreferenceActivity implements
 							.getCurrentButtons(getActivity()
 									.getApplicationContext()));
 
-			// Don't show WiMAX option if not supported
-			/*
-			 * boolean isWimaxEnabled = WimaxHelper.isWimaxSupported(this); if
-			 * (!isWimaxEnabled) {
-			 * PowerWidgetUtil.BUTTONS.remove(PowerWidgetUtil.BUTTON_WIMAX); }
-			 */
+			// Don't show mobile data options if not supported
+			boolean isMobileData = getActivity().getPackageManager()
+					.hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
+			if (!isMobileData) {
+				PowerWidgetUtil.BUTTONS
+						.remove(PowerWidgetUtil.BUTTON_MOBILEDATA);
+				PowerWidgetUtil.BUTTONS
+						.remove(PowerWidgetUtil.BUTTON_NETWORKMODE);
+				PowerWidgetUtil.BUTTONS.remove(PowerWidgetUtil.BUTTON_WIFIAP);
+			}
 
 			// fill that checkbox map!
 			for (PowerWidgetUtil.ButtonInfo button : PowerWidgetUtil.BUTTONS
 					.values()) {
 				// create a checkbox
-				SwitchPreference cb = new SwitchPreference(getActivity()
+				CheckBoxPreference cb = new CheckBoxPreference(getActivity()
 						.getApplicationContext());
 
 				// set a dynamic key based on button id
@@ -175,6 +204,7 @@ public class PowerWidget extends PreferenceActivity implements
 
 				// set vanity info
 				cb.setTitle(button.getTitleResId());
+
 				// set our checked state
 				if (buttonList.contains(button.getId())) {
 					cb.setChecked(true);
@@ -184,7 +214,6 @@ public class PowerWidget extends PreferenceActivity implements
 
 				// add to our prefs set
 				mCheckBoxPrefs.put(cb, button.getId());
-
 				// add to the category
 				prefButtons.addPreference(cb);
 			}
@@ -192,12 +221,11 @@ public class PowerWidget extends PreferenceActivity implements
 
 		public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
 				Preference preference) {
-
 			// we only modify the button list if it was one of our checks that
 			// was clicked
 			boolean buttonWasModified = false;
 			ArrayList<String> buttonList = new ArrayList<String>();
-			for (Map.Entry<SwitchPreference, String> entry : mCheckBoxPrefs
+			for (Map.Entry<CheckBoxPreference, String> entry : mCheckBoxPrefs
 					.entrySet()) {
 				if (entry.getKey().isChecked()) {
 					buttonList.add(entry.getValue());
@@ -224,7 +252,13 @@ public class PowerWidget extends PreferenceActivity implements
 		}
 
 		public boolean onPreferenceChange(Preference preference, Object newValue) {
-
+			if (preference == mFlashMode) {
+				int value = Integer.valueOf((String) newValue);
+				int index = mFlashMode.findIndexOfValue((String) newValue);
+				Settings.System.putInt(getActivity().getApplicationContext()
+						.getContentResolver(), "expanded_flash_mode", value);
+				mFlashMode.setSummary(mFlashMode.getEntries()[index]);
+			}
 			return true;
 		}
 
@@ -324,7 +358,7 @@ public class PowerWidget extends PreferenceActivity implements
 				if (pm != null) {
 					try {
 						mSystemUIResources = pm
-								.getResourcesForApplication("com.android.systemui");
+								.getResourcesForApplication("com.focus.SharedSystemUI");
 					} catch (Exception e) {
 						mSystemUIResources = null;
 						Log.e(TAG, "Could not load SystemUI resources", e);
@@ -396,6 +430,12 @@ public class PowerWidget extends PreferenceActivity implements
 				return v;
 			}
 		}
+	}
+
+	@Override
+	public boolean onPreferenceChange(Preference arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

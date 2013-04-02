@@ -66,5 +66,9 @@
         <item>70</item>
         <item>100</item>
     </string-array>
+    <string-array name="entries_flash_widget">
+        <item>正常</item>
+        <item>高</item>
+    </string-array>
 
 </resources>
