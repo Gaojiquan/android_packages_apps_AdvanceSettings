@@ -22,11 +22,6 @@
             android:summary="@string/summary_widget_order"
             android:title="@string/title_widget_order" >
         </PreferenceScreen>
-
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="expanded_widget_brightness"
-            android:title="@string/title_expanded_widget_brightness" />
     </PreferenceCategory>
 
 </PreferenceScreen>

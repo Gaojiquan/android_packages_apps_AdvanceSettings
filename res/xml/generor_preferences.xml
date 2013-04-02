@@ -3,13 +3,11 @@
     android:title="@string/main_title" >
 
     <PreferenceCategory android:title="@string/system_status_categery" >
-        
         <CheckBoxPreference
+            android:defaultValue="true"
             android:key="status_bar_show_clock"
-            android:title="@string/status_bar_show_clock_title"
-            android:defaultValue="true" />
-        
-        
+            android:title="@string/status_bar_show_clock_title" />
+
         <ListPreference
             android:dialogTitle="@string/status_bar_am_pm_title"
             android:entries="@array/entries_status_bar_am_pm"
@@ -24,22 +22,32 @@
             android:key="status_bar_am_pm_style"
             android:summary="@string/status_bar_am_pm_style_summary"
             android:title="@string/status_bar_am_pm_style_title" />
-        
         <ListPreference
-            android:key="status_bar_battery"
             android:dialogTitle="@string/status_bar_battery_title"
-            android:title="@string/status_bar_battery_title"
             android:entries="@array/entries_status_bar_battery"
-            android:entryValues="@array/values_status_bar_battery" />
-<!--
+            android:entryValues="@array/values_status_bar_battery"
+            android:key="status_bar_battery"
+            android:title="@string/status_bar_battery_title" />
+
+        <PreferenceScreen
+            android:key="power_widget"
+            android:title="@string/power_widget_title" >
+            <intent
+                android:action="android.intent.action.MAIN"
+                android:targetClass="com.android.settings.focus.PowerWidget"
+                android:targetPackage="com.focus.advsettings" />
+        </PreferenceScreen>
+        <!--
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="signal_display"
             android:summaryOff="@string/pref_signal_summary_off"
             android:summaryOn="@string/pref_signal_summary_on"
-            android:title="@string/pref_signal_title" />-->
-        
-        <!-- 
+            android:title="@string/pref_signal_title" />
+        -->
+
+
+        <!--
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="cdma_signal_display"
@@ -60,9 +68,9 @@
                 android:action="android.intent.action.MAIN"
                 android:targetClass="com.android.settings.focus.PowerWidget"
                 android:targetPackage="com.focus.advsettings" />
-        </PreferenceScreen> -->
+        </PreferenceScreen>
+        -->
     </PreferenceCategory>
-     
     <PreferenceCategory android:title="@string/float_categery" >
         <CheckBoxPreference
             android:defaultValue="true"
@@ -77,7 +85,6 @@
             android:summaryOn="@string/float_categery_on_onboot"
             android:title="@string/float_categery_onboot_memory" />
     </PreferenceCategory>
-    
     <PreferenceCategory android:title="@string/system_info_categery" >
         <PreferenceScreen
             android:key="system_status"

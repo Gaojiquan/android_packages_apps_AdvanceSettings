@@ -73,7 +73,7 @@ public class PowerWidget extends PreferenceActivity implements
 			mPowerWidget.setChecked((Settings.System.getInt(
 					getContentResolver(),
 					mGeneralFragmentActivity.EXPANDED_VIEW_WIDGET, 1) == 1));
-
+/*
 			mBrightnessWidget = (CheckBoxPreference) prefSet
 					.findPreference(UI_EXP_WIDGET_BRIGHTNESS);
 
@@ -82,6 +82,7 @@ public class PowerWidget extends PreferenceActivity implements
 							.getInt(getContentResolver(),
 									mGeneralFragmentActivity.EXPANDED_VIEW_WIDGET_BRIGHTNESS,
 									1) == 1));
+//*/
 		}
 	}
 
