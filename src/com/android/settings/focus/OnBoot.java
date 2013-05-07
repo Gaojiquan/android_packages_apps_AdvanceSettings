@@ -17,7 +17,7 @@ public class OnBoot extends BroadcastReceiver {
 				.getBoolean("float_box_on_off_onboot", true);
 		editor.putBoolean("float_box_on_off", status);
 		if (status) {
-			Intent service = new Intent(mGeneralFragmentActivity.FLOAT_SERVICE);
+			Intent service = new Intent(VirtualKey.FLOAT_SERVICE);
 			context.startService(service);
 		}
 		editor.commit();

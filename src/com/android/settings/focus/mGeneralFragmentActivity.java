@@ -24,7 +24,6 @@ public class mGeneralFragmentActivity extends PreferenceFragment implements
 	public static final String EXPANDED_VIEW_WIDGET = "expanded_view_widget";
 	public static final String EXPANDED_VIEW_WIDGET_BRIGHTNESS = "expanded_view_widget_brightness";
 	public static final String WIDGET_BUTTONS = "expanded_widget_buttons";
-	public static final String FLOAT_SERVICE = "focus.system.FloatSysPop";
 	public static final String FLASH_SERVICE = "android.appwidget.action.APPWIDGET_UPDATE";
 
 	private static final String OPERATOR_DISPLAY = "operator_display";
@@ -44,8 +43,6 @@ public class mGeneralFragmentActivity extends PreferenceFragment implements
 	private EditTextPreference mOperatorPref;
 	private CheckBoxPreference mCdmaSignalPref;
 	private CheckBoxPreference mSignalTypePref;
-	private CheckBoxPreference mFloatWindowPref;
-	private CheckBoxPreference mFloatWindowBootOptionPref;
 	private CheckBoxPreference mStatusBarClock;
 	private ListPreference mStatusBarBattery;
 
@@ -69,14 +66,6 @@ public class mGeneralFragmentActivity extends PreferenceFragment implements
 		if (mSignalTypePref != null) {
 			mSignalTypePref.setOnPreferenceChangeListener(this);
 		}
-
-		mFloatWindowPref = (CheckBoxPreference) getPreferenceScreen()
-				.findPreference("float_box_on_off");
-		mFloatWindowPref.setOnPreferenceChangeListener(this);
-
-		mFloatWindowBootOptionPref = (CheckBoxPreference) getPreferenceScreen()
-				.findPreference("float_box_on_off_onboot");
-		mFloatWindowBootOptionPref.setOnPreferenceChangeListener(this);
 
 		mStatusBarAmPm = (ListPreference) getPreferenceScreen().findPreference(
 				STATUS_BAR_AM_PM);
@@ -165,15 +154,6 @@ public class mGeneralFragmentActivity extends PreferenceFragment implements
 			Settings.System.putInt(getActivity().getContentResolver(),
 					SIGNAL_DISPLAY_PATTERN, ((Boolean) newValue) ? 1 : 0);
 
-		} else if (preference == mFloatWindowPref) {
-			boolean floatWindowOnOff = (Boolean) newValue;
-			if (floatWindowOnOff) {
-				Intent service = new Intent(FLOAT_SERVICE);
-				getActivity().startService(service);
-			} else {
-				Intent service = new Intent(FLOAT_SERVICE);
-				getActivity().stopService(service);
-			}
 		} else if (preference == mStatusBarBattery) {
 			int statusBarBattery = Integer.valueOf((String) newValue);
 			int index = mStatusBarBattery.findIndexOfValue((String) newValue);

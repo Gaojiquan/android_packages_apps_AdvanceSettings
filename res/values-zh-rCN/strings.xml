@@ -3,7 +3,6 @@
     <string name="app_name">高级设置</string>
     <string name="menu_settings">首选项</string>
     <string name="title_activity_main">高级设置</string>
-    <string name="main_title">盖世三高级设置</string>
     <string name="hdmi_audio_title">HDMI 音频</string>
     <string name="hdmi_audio_summary">设置当设备连接HDMI时允许或者禁止音频</string>
     <!-- Application Settings : Switch storage mountpoints -->
@@ -29,10 +28,11 @@
     <string name="system_status_categery">状态栏</string>
     <string name="system_boot_categery">自动开关机</string>
     <string name="system_info_categery">手机信息</string>
-    <string name="float_categery_on">飘浮窗开</string>
-    <string name="float_categery_memory">内存飘浮窗</string>
-    <string name="float_categery_off">飘浮窗关</string>
-    <string name="float_categery">飘浮窗</string>
+    <string name="float_categery_on">虚拟键开</string>
+    <string name="float_categery_memory">虚拟键</string>
+    <string name="float_categery_off">虚拟键关</string>
+    <string name="float_categery">虚拟键设置</string>
+    <string name="float_virtualkey">虚拟键</string>
     <string name="float_categery_on_onboot">开机启动(开)</string>
     <string name="float_categery_off_onboot">开机启动(关)</string>
     <string name="float_categery_onboot_memory">开机启动</string>
@@ -162,5 +162,10 @@
     <string name="title_button_modes">按钮模式</string>
     <string name="pref_flash_mode_title">闪烁频率</string>
     <string name="power_widget_behavior">控件行为</string>
+    <string name="float_box_autohide">自动隐藏</string>
+    <string name="float_box_autohide_on">自动隐藏(开)</string>
+    <string name="float_box_autohide_off">自动隐藏(关)</string>
+    <string name="pref_fautohide_peroid_title">自动隐藏时间间隔</string>
+    <string name="pref_float_box_expand_style_title">展开方式</string>
 
 </resources>

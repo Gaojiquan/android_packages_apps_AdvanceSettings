@@ -23,60 +23,6 @@
         <item>1</item>
         <item>2</item>
     </string-array>
-    <string-array name="mdnie_scenario_entries">
-        <item>UI</item>
-        <item>Video</item>
-        <item>Camera</item>
-        <item>Navigation</item>
-        <item>Gallery</item>
-        <item>VT</item>
-        <item>Bypass</item>
-    </string-array>
-    <string-array name="mdnie_scenario_entries_values" translatable="false">
-        <item>0</item>
-        <item>1</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-    </string-array>
-    <string-array name="mdnie_mode_entries">
-        <item>Standard (Default)</item>
-        <item>Dynamic</item>
-        <item>Natural</item>
-        <item>Movie</item>
-    </string-array>
-    <string-array name="mdnie_mode_entries_values" translatable="false">
-        <item>1</item>
-        <item>0</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-    <string-array name="panel_gamma_entries">
-        <item>2.2 (Default)</item>
-        <item>1.9</item>
-    </string-array>
-    <string-array name="panel_gamma_entries_values" translatable="false">
-        <item>0</item>
-        <item>1</item>
-    </string-array>
-    <string-array name="touchscreen_sensitivity_entries">
-        <item>10</item>
-        <item>20</item>
-        <item>30</item>
-        <item>50 (Default)</item>
-        <item>70</item>
-        <item>100</item>
-    </string-array>
-    <string-array name="touchscreen_sensitivity_entries_values" translatable="false">
-        <item>10</item>
-        <item>20</item>
-        <item>30</item>
-        <item>50</item>
-        <item>70</item>
-        <item>100</item>
-    </string-array>
     <string-array name="entries_status_bar_battery" translatable="false">
         <item>@string/status_bar_style_icon</item>
         <item>@string/status_bar_battery_status_percentage</item>
@@ -114,6 +60,28 @@
         <item>High</item>
     </string-array>
     <string-array name="values_flash_widget" translatable="false">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="entries_autohide_peroid">
+        <item>5s</item>
+        <item>10s</item>
+        <item>20s</item>
+        <item>30s</item>
+        <item>1min</item>
+    </string-array>
+    <string-array name="values_autohide_peroid" translatable="false">
+        <item>5000</item>
+        <item>10000</item>
+        <item>20000</item>
+        <item>30000</item>
+        <item>60000</item>
+    </string-array>
+    <string-array name="entries_float_box_expand_style">
+        <item>Drag</item>
+        <item>Click</item>
+    </string-array>
+    <string-array name="values_float_box_expand_style" translatable="false">
         <item>0</item>
         <item>1</item>
     </string-array>

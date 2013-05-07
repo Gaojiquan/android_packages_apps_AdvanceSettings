@@ -3,7 +3,6 @@
     <string name="app_name">AdvaceSettings</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">AdvaceSettings</string>
-    <string name="main_title">I535 Settings</string>
     <string name="hdmi_audio_title">HDMI Audio</string>
     <string name="hdmi_audio_summary">Enable or disable audio over HDMI</string>
     <!-- Application Settings : Switch storage mountpoints -->
@@ -29,13 +28,14 @@
     <string name="system_status_categery">Statusbar</string>
     <string name="system_boot_categery">Auto Boot Options</string>
     <string name="system_info_categery">PhoneInfo</string>
-    <string name="float_categery">Float Window</string>
-    <string name="float_categery_memory">Memory Float Window</string>
-    <string name="float_categery_on">Float Window On</string>
-    <string name="float_categery_off">Float Window Off</string>
-    <string name="float_categery_on_onboot">Float Window On When Booted</string>
-    <string name="float_categery_off_onboot">Not Float Window On When Booted</string>
-    <string name="float_categery_onboot_memory">Float Window On Boot</string>
+    <string name="float_virtualkey">Virtual Key</string>
+    <string name="float_categery">Virtual Key Settings</string>
+    <string name="float_categery_memory">Virtual Key</string>
+    <string name="float_categery_on">Virtual Key On</string>
+    <string name="float_categery_off">Virtual Key Off</string>
+    <string name="float_categery_on_onboot">Virtual Key On When Booted</string>
+    <string name="float_categery_off_onboot">Virtual Key On When Booted</string>
+    <string name="float_categery_onboot_memory">Virtual Key On Boot</string>
     <string name="pref_signal_summary_off">Graphic</string>
     <string name="pref_signal_summary_on">Text</string>
     <string name="pref_signal_title">Signal Type</string>
@@ -158,5 +158,10 @@
     <string name="pref_home_answer_incall_summary">Home key to answer incall</string>
     <string name="title_button_modes">Button modes</string>
     <string name="pref_flash_mode_title">Flash mode</string>
+    <string name="float_box_autohide">AutoHide</string>
+    <string name="float_box_autohide_on">AutoHide On</string>
+    <string name="float_box_autohide_off">AutoHide Off</string>
+    <string name="pref_fautohide_peroid_title">AutoHide Peroid</string>
+    <string name="pref_float_box_expand_style_title">Open Style</string>
 
 </resources>
