@@ -27,5 +27,10 @@
         <item>拖动</item>
         <item>单击</item>
     </string-array>
+    <string-array name="entries_float_box_size">
+        <item>原始尺寸</item>
+        <item>稍大</item>
+        <item>最大</item>
+    </string-array>
 
 </resources>

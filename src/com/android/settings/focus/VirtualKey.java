@@ -39,10 +39,12 @@ public class VirtualKey extends PreferenceActivity implements
 	private CheckBoxPreference mAutoHidePref;
 	private ListPreference mOpenStylePref;
 	private ListPreference mAutoHidePeroidPref;
+	private ListPreference mCircleSizePref;
 
 	private final static String KEY_AUTOHIDE = "vkey_autohide";
 	private final static String KEY_AUTOHIDE_PERIOD = "vkey_autohide_period";
 	private final static String KEY_OPENONCLICK = "vkey_open_type";
+	private final static String KEY_CIRCLE_SIZE = "vkcirclesize";
 
 	public static final String FLOAT_SERVICE = "focus.system.FloatSysPop";
 
@@ -65,13 +67,36 @@ public class VirtualKey extends PreferenceActivity implements
 				.findPreference("float_box_autohide");
 		mAutoHidePref.setOnPreferenceChangeListener(this);
 
+		int value = Settings.System.getInt(getContentResolver(), KEY_AUTOHIDE,
+				1);
+		mAutoHidePref.setChecked(value == 1);
+
 		mAutoHidePeroidPref = (ListPreference) getPreferenceScreen()
 				.findPreference("float_box_autohide_peroid");
 		mAutoHidePeroidPref.setOnPreferenceChangeListener(this);
 
+		value = Settings.System.getInt(getContentResolver(),
+				KEY_AUTOHIDE_PERIOD, 5000);
+		mAutoHidePeroidPref.setValue(Integer.toString(value));
+		mAutoHidePeroidPref.setSummary(mAutoHidePeroidPref.getEntry());
+
 		mOpenStylePref = (ListPreference) getPreferenceScreen().findPreference(
 				"pref_float_box_expand_style");
 		mOpenStylePref.setOnPreferenceChangeListener(this);
+
+		value = Settings.System
+				.getInt(getContentResolver(), KEY_OPENONCLICK, 0);
+		mOpenStylePref.setValue(Integer.toString(value));
+		mOpenStylePref.setSummary(mOpenStylePref.getEntry());
+
+		mCircleSizePref = (ListPreference) getPreferenceScreen()
+				.findPreference("float_box_float_box_size");
+		mCircleSizePref.setOnPreferenceChangeListener(this);
+
+		value = Settings.System.getInt(getContentResolver(), KEY_CIRCLE_SIZE,
+				190);
+		mCircleSizePref.setValue(Integer.toString(value));
+		mCircleSizePref.setSummary(mCircleSizePref.getEntry());
 
 	}
 
@@ -112,6 +137,16 @@ public class VirtualKey extends PreferenceActivity implements
 
 			Settings.System.putInt(getContentResolver(), KEY_AUTOHIDE_PERIOD,
 					value);
+
+			return true;
+		} else if (preference == mCircleSizePref) {
+			int value = Integer.valueOf((String) newValue);
+			int index = mCircleSizePref.findIndexOfValue((String) newValue);
+
+			mCircleSizePref.setSummary(mCircleSizePref.getEntries()[index]);
+
+			Settings.System
+					.putInt(getContentResolver(), KEY_CIRCLE_SIZE, value);
 
 			return true;
 		}

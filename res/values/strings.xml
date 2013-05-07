@@ -163,5 +163,7 @@
     <string name="float_box_autohide_off">AutoHide Off</string>
     <string name="pref_fautohide_peroid_title">AutoHide Peroid</string>
     <string name="pref_float_box_expand_style_title">Open Style</string>
+    
+    <string name="pref_float_box_size_title">Circle Size</string>
 
 </resources>

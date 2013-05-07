@@ -22,6 +22,13 @@
             android:entryValues="@array/values_float_box_expand_style"
             android:key="pref_float_box_expand_style"
             android:title="@string/pref_float_box_expand_style_title" />
+        
+        <ListPreference
+            android:dialogTitle="@string/pref_float_box_size_title"
+            android:entries="@array/entries_float_box_size"
+            android:entryValues="@array/values_float_box_size"
+            android:key="float_box_float_box_size"
+            android:title="@string/pref_float_box_size_title" />
 
         <CheckBoxPreference
             android:defaultValue="true"

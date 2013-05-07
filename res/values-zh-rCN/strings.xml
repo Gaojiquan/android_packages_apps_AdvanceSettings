@@ -167,5 +167,6 @@
     <string name="float_box_autohide_off">自动隐藏(关)</string>
     <string name="pref_fautohide_peroid_title">自动隐藏时间间隔</string>
     <string name="pref_float_box_expand_style_title">展开方式</string>
+    <string name="pref_float_box_size_title">圈圈大小</string>
 
 </resources>
