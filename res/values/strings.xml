@@ -14,7 +14,10 @@
     <string name="pref_switch_cdma_signal_summary_on">Change to both 1x and 3g</string>
     <string name="pref_switch_cdma_signal_summary_off">Change to only one display</string>
     <string name="operator_display_title">Custom the Operator</string>
+<<<<<<< HEAD
     <string name="operator_display_style">Custom the Operator Style</string>
+=======
+>>>>>>> f0aea56237ccb42e5e45058a2faa744d3ebd7e8c
     <string name="operator_display_dialog_title">Custom the Operator</string>
     <string name="operator_display_summary">Custom the Operator for your device</string>
     <string name="auto_power_on_off_title">Auto Power On Off</string>

@@ -69,15 +69,20 @@ public class DeviceSettings extends FragmentActivity {
 		bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		bar.setDisplayOptions(ActionBar.DISPLAY_SHOW_TITLE,
 				ActionBar.DISPLAY_SHOW_TITLE);
+<<<<<<< HEAD
 
 		// Remove title and icon
 		bar.setDisplayShowHomeEnabled(false);
 		bar.setDisplayShowTitleEnabled(false);
+=======
+		bar.setTitle(R.string.app_name);
+>>>>>>> f0aea56237ccb42e5e45058a2faa744d3ebd7e8c
 
 		mTabsAdapter = new TabsAdapter(this, mViewPager);
 		mTabsAdapter.addTab(
 				bar.newTab().setText(R.string.category_generor_title),
 				mGeneralFragmentActivity.class, null);
+<<<<<<< HEAD
 		/**
 		 * mTabsAdapter.addTab(
 		 * bar.newTab().setText(R.string.category_mdnie_title),
@@ -85,6 +90,15 @@ public class DeviceSettings extends FragmentActivity {
 		 * bar.newTab().setText(R.string.category_sensors_title),
 		 * SensorsFragmentActivity.class, null);
 		 */
+=======
+/**
+		mTabsAdapter.addTab(
+				bar.newTab().setText(R.string.category_mdnie_title),
+				mDNIeFragmentActivity.class, null);
+		mTabsAdapter.addTab(
+				bar.newTab().setText(R.string.category_sensors_title),
+				SensorsFragmentActivity.class, null);*/
+>>>>>>> f0aea56237ccb42e5e45058a2faa744d3ebd7e8c
 
 		mTabsAdapter.addTab(
 				bar.newTab().setText(R.string.hardware_keys_bindings_title),

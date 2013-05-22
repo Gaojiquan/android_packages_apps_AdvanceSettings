@@ -32,11 +32,14 @@
         <item>稍大</item>
         <item>最大</item>
     </string-array>
+<<<<<<< HEAD
     <string-array name="entries_operator_style">
         <item>系统默认</item>
         <item>SIM卡注册名(SPN)</item>
         <item>基站注册名(PLMN)</item>
         <item>自定义</item>
     </string-array>
+=======
+>>>>>>> f0aea56237ccb42e5e45058a2faa744d3ebd7e8c
 
 </resources>

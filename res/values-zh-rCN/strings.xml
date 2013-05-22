@@ -13,7 +13,10 @@
     <string name="operator_display_title">自定义运营商</string>
     <string name="operator_display_dialog_title">自定义运营商</string>
     <string name="operator_display_summary">为您的设备自定义运营商显示</string>
+<<<<<<< HEAD
     <string name="operator_display_style">显示类型</string>
+=======
+>>>>>>> f0aea56237ccb42e5e45058a2faa744d3ebd7e8c
     <string name="pref_switch_cdma_signal_title">电信信号显示方式</string>
     <string name="pref_switch_cdma_signal_summary_on">双信号显示方式</string>
     <string name="pref_switch_cdma_signal_summary_off">单信号显示方式</string>

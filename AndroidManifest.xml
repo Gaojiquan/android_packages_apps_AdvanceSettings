@@ -16,7 +16,11 @@
         <activity
             android:name="com.android.settings.focus.DeviceSettings"
             android:label="@string/title_activity_main"
+<<<<<<< HEAD
             android:theme="@android:style/Theme.DeviceDefault.Light" >
+=======
+            android:theme="@android:style/Theme.DeviceDefault" >
+>>>>>>> f0aea56237ccb42e5e45058a2faa744d3ebd7e8c
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,7 +40,11 @@
 
         <activity
             android:name="com.android.settings.focus.PowerWidget"
+<<<<<<< HEAD
             android:label="@string/notification_drawer_title"
+=======
+            android:label="@string/title_activity_main"
+>>>>>>> f0aea56237ccb42e5e45058a2faa744d3ebd7e8c
             android:theme="@android:style/Theme.DeviceDefault" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,7 +55,11 @@
         <activity
             android:name="com.android.settings.focus.VirtualKey"
             android:label="@string/float_virtualkey"
+<<<<<<< HEAD
             android:theme="@android:style/Theme.DeviceDefault.Light" >
+=======
+            android:theme="@android:style/Theme.DeviceDefault" >
+>>>>>>> f0aea56237ccb42e5e45058a2faa744d3ebd7e8c
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -55,6 +67,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity
             android:name="com.android.settings.focus.CustomOperatorSetting"
             android:label="@string/operator_display_title"
@@ -65,6 +78,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+=======
+>>>>>>> f0aea56237ccb42e5e45058a2faa744d3ebd7e8c
     </application>
 
 </manifest>

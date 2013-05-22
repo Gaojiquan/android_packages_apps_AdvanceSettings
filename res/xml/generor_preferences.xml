@@ -30,6 +30,7 @@
             android:title="@string/status_bar_battery_title" />
 
         <PreferenceScreen
+<<<<<<< HEAD
             android:key="operator_display"
             android:title="@string/operator_display_title" >
             <intent
@@ -38,6 +39,8 @@
                 android:targetPackage="com.focus.advsettings" />
         </PreferenceScreen>
         <PreferenceScreen
+=======
+>>>>>>> f0aea56237ccb42e5e45058a2faa744d3ebd7e8c
             android:key="notification_drawer"
             android:title="@string/notification_drawer_title" >
             <intent
@@ -61,6 +64,16 @@
             android:summaryOff="@string/pref_switch_cdma_signal_summary_off"
             android:summaryOn="@string/pref_switch_cdma_signal_summary_on"
             android:title="@string/pref_switch_cdma_signal_title" />
+<<<<<<< HEAD
+=======
+
+        <EditTextPreference
+            android:dialogTitle="@string/operator_display_dialog_title"
+            android:key="operator_display"
+            android:summary="@string/operator_display_summary"
+            android:title="@string/operator_display_title" />
+        </PreferenceScreen>
+>>>>>>> f0aea56237ccb42e5e45058a2faa744d3ebd7e8c
             -->
         </PreferenceScreen>
     </PreferenceCategory>

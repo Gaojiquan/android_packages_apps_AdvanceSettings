@@ -95,6 +95,7 @@
         <item>245</item>
         <item>300</item>
     </string-array>
+<<<<<<< HEAD
     <string-array name="entries_operator_style">
         <item>Default</item>
         <item>SPN</item>
@@ -107,5 +108,7 @@
         <item>2</item>
         <item>3</item>
     </string-array>
+=======
+>>>>>>> f0aea56237ccb42e5e45058a2faa744d3ebd7e8c
 
 </resources>
