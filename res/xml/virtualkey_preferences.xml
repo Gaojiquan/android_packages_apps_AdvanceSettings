@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/float_virtualkey" >
+
+    <PreferenceCategory android:title="@string/float_categery" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="float_box_on_off"
+            android:summaryOff="@string/float_categery_off"
+            android:summaryOn="@string/float_categery_on"
+            android:title="@string/float_categery_memory" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="float_box_on_off_onboot"
+            android:summaryOff="@string/float_categery_off_onboot"
+            android:summaryOn="@string/float_categery_on_onboot"
+            android:title="@string/float_categery_onboot_memory" />
+
+        <ListPreference
+            android:dialogTitle="@string/pref_float_box_expand_style_title"
+            android:entries="@array/entries_float_box_expand_style"
+            android:entryValues="@array/values_float_box_expand_style"
+            android:key="pref_float_box_expand_style"
+            android:title="@string/pref_float_box_expand_style_title" />
+        
+        <ListPreference
+            android:dialogTitle="@string/pref_float_box_size_title"
+            android:entries="@array/entries_float_box_size"
+            android:entryValues="@array/values_float_box_size"
+            android:key="float_box_float_box_size"
+            android:title="@string/pref_float_box_size_title" />
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="float_box_autohide"
+            android:summaryOff="@string/float_box_autohide_off"
+            android:summaryOn="@string/float_box_autohide_on"
+            android:title="@string/float_box_autohide" />
+
+        <ListPreference
+            android:dependency="float_box_autohide"
+            android:dialogTitle="@string/pref_fautohide_peroid_title"
+            android:entries="@array/entries_autohide_peroid"
+            android:entryValues="@array/values_autohide_peroid"
+            android:key="float_box_autohide_peroid"
+            android:title="@string/pref_fautohide_peroid_title" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

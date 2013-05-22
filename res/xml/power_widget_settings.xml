@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- Notification drawer Power Widget -->
+    <PreferenceCategory android:title="@string/power_widget_title" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="expanded_widget"
+            android:title="@string/title_expanded_widget" />
+
+        <PreferenceScreen
+            android:dependency="expanded_widget"
+            android:fragment="com.android.settings.focus.PowerWidget$PowerWidgetChooser"
+            android:key="widget_picker"
+            android:summary="@string/summary_widget_picker"
+            android:title="@string/title_widget_picker" >
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:dependency="expanded_widget"
+            android:fragment="com.android.settings.focus.PowerWidget$PowerWidgetOrder"
+            android:key="widget_order"
+            android:summary="@string/summary_widget_order"
+            android:title="@string/title_widget_order" >
+        </PreferenceScreen>
+    </PreferenceCategory>
+    
+        <PreferenceCategory
+       android:title="@string/power_widget_behavior">
+
+        <CheckBoxPreference
+            android:key="expanded_hide_onchange"
+            android:title="@string/title_expanded_hide_onchange"
+            android:defaultValue="false"
+            android:dependency="expanded_widget" />
+
+        <CheckBoxPreference
+            android:key="expanded_hide_scrollbar"
+            android:title="@string/title_expanded_hide_scrollbar"
+            android:defaultValue="false"
+            android:dependency="expanded_widget" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
