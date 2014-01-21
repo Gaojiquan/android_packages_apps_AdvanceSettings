@@ -16,11 +16,7 @@
         <activity
             android:name="com.android.settings.focus.DeviceSettings"
             android:label="@string/title_activity_main"
-<<<<<<< HEAD
-            android:theme="@android:style/Theme.DeviceDefault.Light" >
-=======
             android:theme="@android:style/Theme.DeviceDefault" >
->>>>>>> f0aea56237ccb42e5e45058a2faa744d3ebd7e8c
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
